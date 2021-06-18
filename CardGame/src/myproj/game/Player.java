@@ -9,6 +9,8 @@ public class Player {
 	int playerID;
 	String CurrCard;
 	boolean win;
+	Card currentCard;
+	List<Card> allCards;
 	
 	
 	public Player() {
@@ -38,8 +40,9 @@ public class Player {
 		this.cardLeft = cardLeft;
 	}
 	
-	public void updateCard(String cardID) {
-		this.cardSet.remove(cardID); 
+	public void updateCard(Card card) {
+		
+		 
 	}
 
 	public Set<String> getCardSet() {
@@ -65,9 +68,18 @@ public class Player {
 	public void setPlayerID(int playerID) {
 		this.playerID = playerID;
 	}
-	public void setCurrCard(String currCard) {
-		CurrCard = currCard;
+	public Card setCurrCard(int cardIndex) {
+		currentCard = this.allCards.get(cardIndex-1);
+		this.allCards.get(cardIndex-1).cardFaceName = " ** ";
+		return currentCard; 
 	}
+
+
+
+	public void addCards(List<Card> subList) {
+		allCards = subList;
+	}
+	
 	
 	
 

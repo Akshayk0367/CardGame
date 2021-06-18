@@ -59,7 +59,8 @@ public class startGame {
 				}
 			}
 		}
-		System.out.println("Player " + gameData.getBidder() + "choose the highest bid: " + gameData.getHighestBid());
+		System.out.println("\nPlayer " + gameData.getBidder() + " choose the highest bid which is  " + gameData.getHighestBid());
+		System.out.println("----------------------------------------------------------------------------");
 	}
 
 	private static boolean check(int bid, GameData gameData) {
@@ -73,5 +74,15 @@ public class startGame {
 		}
 		return false;
 		
+	}
+
+	public static String setTrump(GameData gameData) {
+		System.out.println("\nPlayer "+ gameData.getBidder() +" set the trump.\nchoose from the following\nC or c for Clubs\nD or d for Diamonds\nH or h for Heart\nS or s for Spades\n");
+		Scanner sc = new Scanner(System.in);
+		String trump = sc.next().toUpperCase();
+		gameData.setTrump(trump);
+		
+		System.out.println("To open the trump enter trump");
+		return trump;
 	}
 }

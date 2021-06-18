@@ -2,7 +2,28 @@ package myproj.game;
 
 import java.util.*;
 
-public class CreateCards {
+public class Card {
+	
+	int cardNumber;
+	String cardFaceName;
+	Suite suite;
+	int cardValue;
+	boolean isTrump;
+	
+	public Card() {}
+	
+	public Card(int cardNumber, Suite suite, boolean isTrump) {
+		this.cardNumber = cardNumber;
+		this.suite = suite;
+		this.isTrump = isTrump;
+		this.cardFaceName = CardUtil.calculateCardFaceName(cardNumber, suite);
+		this.cardValue = CardUtil.calculateCardValue(cardNumber);
+	}
+	
+	public Card(int cardNumber, Suite suite) {
+		this(cardNumber, suite, false);
+	}
+	
 	
 	String[] cards = {"7C", "8C", "9C", "10C", "JC", "QC", "KC","1C",
 			"7D", "8D", "9D", "10D", "JD", "QD", "KD","1D",
@@ -10,7 +31,17 @@ public class CreateCards {
 			"7S", "8S", "9S", "10S", "JS", "QS", "KS","1S"};
 
 	List<String> cardList = Arrays.asList(cards);
+	String trump;
 	
+	
+	public String getTrump() {
+		return trump;
+	}
+
+	public void setTrump(String trump) {
+		this.trump = trump;
+	}
+
 	public Set<String> createList(){
 		Set<String> setList = new HashSet<String>();
 		
@@ -18,30 +49,6 @@ public class CreateCards {
 			setList.add(this.cards[i]);
 		}
 		return setList;
-	}
-	
-	public Map<String, Integer> cardRank(){
-		Map<String, Integer> cardPoints = new HashMap<>();
-		for (int i=0; i<32; i++) {
-			if(this.cards[i].contains("J")) {
-				cardPoints.put(cards[i], 3);
-			}
-			else if(this.cards[i].contains("9")) {
-				cardPoints.put(cards[i], 2);
-			}
-			else if(this.cards[i].contains("1")) {
-				cardPoints.put(cards[i], 1);
-			}
-			else if(this.cards[i].contains("10")) {
-				cardPoints.put(cards[i], 1);
-			}
-			else {
-				cardPoints.put(cards[i], 0);
-			}
-		}
-		
-		return cardPoints;
-		
 	}
 
 	public List<String> getCardList() {
